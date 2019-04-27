@@ -25,12 +25,10 @@ class Search extends React.Component {
 
     this.setState({ searchQuery });
 
-    // If searchQuery isn't present, don't send request to server
     if (!searchQuery) {
       return false;
     }
 
-    // Set loading to true, while we are fetching data from server
     this.setState({ loading: true });
 
     fetch(`${API_URL}/autocomplete?searchQuery=${searchQuery}`)
@@ -44,14 +42,11 @@ class Search extends React.Component {
   }
 
   handleRedirect(currencyId) {
-    // Clear input value and close autocomplete container,
-    // by clearing searchQuery state
     this.setState({
       searchQuery: '',
       searchResults: [],
     });
 
-    // Redirect to currency page
     this.props.history.push(`/currency/${currencyId}`);
   }
 
@@ -78,8 +73,6 @@ class Search extends React.Component {
       )
     }
 
-    // Send no result, only if loading is set to false
-    // To avoid showing no result, when actually there are ones
     if (!loading) {
       return (
         <div className="Search-result-container">
